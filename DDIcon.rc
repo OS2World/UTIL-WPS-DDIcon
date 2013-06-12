@@ -1,0 +1,59 @@
+// =====================================================================#
+//                                                                      #
+//   A replacement class for WPIcon, which makes it possible to change  #
+//   the icon of one or more objects, by dropping them on an icon       #
+//   object.                                                            #
+//   Copyright (C) 1999 Jens Borch Christiansen                         #
+//                                                                      #
+//   This program is free software; you can redistribute it and/or      #
+//   modify it under the terms of the GNU General Public License as     #
+//   published by the Free Software Foundation; either version 2 of     #
+//   the License, or (at your option) any later version.                #
+//                                                                      #
+//   This program is distributed in the hope that it will be useful,    #
+//   but WITHOUT ANY WARRANTY; without even the implied warranty of     #
+//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the      #
+//   GNU General Public License for more details.                       #
+//                                                                      #
+//   You should have received a copy of the GNU General Public License  #
+//   along with this program; if not, write to the Free Software        #
+//   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA           #
+//   02111-1307  USA                                                    #
+//                                                                      #
+// =====================================================================#
+
+#include <os2.h>
+#include "DDIconIDS.h"
+
+BITMAP DLGID_BITMAP PRELOAD DDIcon.bmp
+
+DLGTEMPLATE DLGID_PRODINFO LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "DDIcon Product Information", DLGID_PRODINFO, 12, 6, 192, 115, WS_VISIBLE,
+            FCF_SYSMENU | FCF_TITLEBAR
+            PRESPARAMS PP_BACKGROUNDCOLOR, 0xCCCCCCL
+    BEGIN
+        GROUPBOX        "DDIcon version 1.00", 200, 3, 18, 186, 94
+                        PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans Bold"
+        CONTROL         DLGID_BITMAP, DLGID_BITMAP, 24, 69, 145, 38, WC_STATIC, SS_BITMAP |
+                        WS_GROUP | WS_VISIBLE
+        LTEXT           "A replacement class for WPIcon, which makes it possible to",
+                            201, 8, 55, 176, 8
+                        PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+        LTEXT           "change the icon of one or more objects, by dropping them on",
+                            201, 8, 47, 176, 8
+                        PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+        LTEXT           "an icon object. DDIcon is distributed under the terms of the GNU"
+                            202, 8, 39, 176, 8
+                        PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+        LTEXT           "General Public License.",
+                            203, 8, 31, 176, 8
+                        PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+        LTEXT           "Copyright (C) 1999 Jens Borch Christiansen",
+                            204, 8, 21, 176, 8
+                        PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+        PUSHBUTTON      "OK", DID_OK, 80, 3, 30, 11
+                        PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+    END
+END
+

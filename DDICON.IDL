@@ -1,0 +1,149 @@
+// =====================================================================#
+//                                                                      #
+//   A replacement class for WPIcon, which makes it possible to,change  #
+//   the icon of one or more objects, by dropping them on an icon       #
+//   object.                                                            #
+//   Copyright (C) 1999 Jens Borch Christiansen                         #
+//                                                                      #
+//   This program is free software; you can redistribute it and/or      #
+//   modify it under the terms of the GNU General Public License as     #
+//   published by the Free Software Foundation; either version 2 of     #
+//   the License, or (at your option) any later version.                #
+//                                                                      #
+//   This program is distributed in the hope that it will be useful,    #
+//   but WITHOUT ANY WARRANTY; without even the implied warranty of     #
+//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the      #
+//   GNU General Public License for more details.                       #
+//                                                                      #
+//   You should have received a copy of the GNU General Public License  #
+//   along with this program; if not, write to the Free Software        #
+//   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA           #
+//   02111-1307  USA                                                    #
+//                                                                      #
+// =====================================================================#
+
+// =====================================================================#
+//                                                                      #
+//  CLASS: DDIcon                                                       #
+//                                                                      #
+//  CLASS HIERARCHY:                                                    #
+//                                                                      #
+//      SOMObject                                                       #
+//        ÀÄÄ WPObject                                                  #
+//              ÀÄÄ WPFileSystem                                        #
+//                    ÀÄÄ WPDataFile                                    #
+//                          ÀÄÄ WPIcon                                  #
+//                                ÀÄÄ DDIcon                            #
+//                                                                      #
+//  DESCRIPTION:                                                        #
+//                                                                      #
+//  A replacement class for WPIcon, which makes it possible to,change   #
+//  the icon of one or more objects, by dropping them on an icon        #
+//  object.                                                             #
+//                                                                      #
+// =====================================================================#
+
+
+#ifndef DDIcon_idl
+#define DDIcon_idl
+
+
+//# ================================================================= #
+//# Include directives:                                               #
+//# ================================================================= #
+#include "wpicon.idl"
+#include <somcls.idl>
+
+//# ================================================================== #
+//# Interface declaration section:                                     #
+//# Describes the interface of the DDIcon class.                       #
+//# ================================================================== #
+interface M_DDIcon;
+
+interface DDIcon : WPIcon
+{
+
+#ifdef __SOMIDL__
+  implementation {
+
+    //#=================================================================== #
+    //# Class modifier statements                                          #
+    //#=================================================================== #
+          externalstem = DDIcon;
+          local;
+          externalprefix = ico_;
+          functionprefix = ico_;
+          majorversion = 1;
+          minorversion = 1;
+          filestem = DDIcon;
+          metaclass = M_DDIcon;
+          callstyle = oidl;
+
+
+    //# ================================================================== #
+    //# Passthru Statements:                                               #
+    //# Include any code that the SOM compiler should pass                 #
+    //# through to the binding files it creats.                            #
+    //# ================================================================== #
+
+    passthru C_ih_before =  ""      //# Internal definitions for this object
+   " /* PM and OS2 include directives */"
+   "   #define INCL_WIN"
+   "   #define INCL_DOS"
+   "   #define INCL_GPIBITMAPS"
+   "   #define INCL_DOSMODULEMGR"
+   "   #include <os2.h>"
+   ""
+   " /* WPS include directives */"
+   "   #define INCL_WPCLASS"
+   "   #define INCL_WPFOLDER"
+   "   #include <pmwp.h>"
+   ""
+   " /* C include directives */"
+   "   #include <stdio.h>"
+   ""
+   " /* General constants */"
+   "   #define THREAD_STACK_SIZE           8192"
+   "   #define BUFFERSIZE                  256";
+
+    passthru C_h_before =  "";   //# Public definitions for this object
+
+    //# ================================================================== #
+    //# Method modifiers                                                   #
+    //# ================================================================== #
+
+    wpDragOver:         override;
+    wpDrop:             override;
+    wpModifyPopupMenu:  override;
+    wpMenuItemSelected: override;
+
+  };
+#endif /* __SOMIDL__ */
+};
+
+//# ================================================================== #
+//# Metaclass section:                                                 #
+//# Describe the metaclass of DDIcon.                                  #
+//# ================================================================== #
+
+interface M_DDIcon : M_WPIcon
+{
+
+#ifdef __SOMIDL__
+  implementation {
+
+    //# Class Modifiers
+    externalstem = DDIcon;
+    local;
+    externalprefix = icoM_;
+    functionprefix = icoM_;
+    majorversion = 1;
+    minorversion = 1;
+    filestem = DDIcon;
+    callstyle = oidl;
+
+  };
+#endif /* __SOMIDL__ */
+};
+
+#endif  /* DDIcon_idl */
